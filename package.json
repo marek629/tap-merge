@@ -1,0 +1,38 @@
+{
+  "name": "@tap-ogg/tap-merge",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "dist/cli.js",
+  "author": "Marek Jędryka",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "CHANGELOG.md",
+    "dist/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.2.3",
+    "@types/yargs": "^17.0.24",
+    "ava": "^5.3.0",
+    "bats": "^1.9.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "event-stream": "^4.0.1",
+    "tap-merge": "^0.3.1",
+    "yargs": "^17.7.2"
+  },
+  "bin": {
+    "tap-merge": "dist/cli.js",
+    "tmerge": "dist/cli.js"
+  },
+  "scripts": {
+    "prebuild": "prettier --write src/ test/",
+    "build": "tsc",
+    "pretest": "bash -xe tools/pretest.sh",
+    "test": "yarn test:unit && yarn test:integration",
+    "test:unit": "ava",
+    "test:integration": "bats test/*.bats --timing --trace --print-output-on-failure"
+  }
+}
