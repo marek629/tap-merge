@@ -6,9 +6,23 @@
   "author": "Marek Jędryka",
   "license": "MIT",
   "private": false,
+  "repository": "github:marek629/tap-merge",
   "files": [
     "CHANGELOG.md",
-    "dist/*"
+    "dist/*",
+    "src/*"
+  ],
+  "engines": {
+    "node": ">= 12"
+  },
+  "keywords": [
+    "test",
+    "testing",
+    "tap",
+    "cli",
+    "stream",
+    "merging",
+    "merge"
   ],
   "devDependencies": {
     "@types/node": "^20.2.3",
