@@ -29,6 +29,8 @@
     "@types/yargs": "^17.0.24",
     "ava": "^5.3.0",
     "bats": "^1.9.0",
+    "c8": "^8.0.0",
+    "parcel": "^2.9.1",
     "prettier": "^2.8.8",
     "typescript": "^5.0.4"
   },
@@ -43,10 +45,30 @@
   },
   "scripts": {
     "prebuild": "prettier --write src/ test/",
-    "build": "tsc",
+    "build": "parcel build src/cli.ts",
+    "postbuild": "chmod +x dist/cli.js",
+    "watch": "parcel watch src/cli.ts",
     "pretest": "bash -xe tools/pretest.sh",
-    "test": "yarn test:unit && yarn test:integration",
-    "test:unit": "ava",
-    "test:integration": "bats test/*.bats --timing --trace --print-output-on-failure"
+    "test": "yarn test:integration",
+    "test:integration": "bats test/*.bats --timing --trace --print-output-on-failure",
+    "precoverage": "rm -rf coverage",
+    "coverage": "c8 --check-coverage --lines 0 --statements 0 --functions 0 --branches 80 yarn test"
+  },
+  "ava": {
+    "files": [
+      "!**/(massive|passing|skipping).*"
+    ]
+  },
+  "c8": {
+    "all": true,
+    "src": "src",
+    "exclude": [
+      "**/*.test.js"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text-summary"
+    ]
   }
 }
