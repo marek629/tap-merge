@@ -1,7 +1,7 @@
 {
   "name": "@tap-ogg/tap-merge",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/cli.js",
   "author": "Marek Jędryka",
   "license": "MIT",
@@ -52,7 +52,8 @@
     "test": "yarn test:integration",
     "test:integration": "bats test/*.bats --timing --trace --print-output-on-failure",
     "precoverage": "rm -rf coverage",
-    "coverage": "c8 --check-coverage --lines 0 --statements 0 --functions 0 --branches 80 yarn test"
+    "coverage": "c8 --check-coverage --lines 0 --statements 0 --functions 0 --branches 80 yarn test",
+    "postversion": "yarn build"
   },
   "ava": {
     "files": [
